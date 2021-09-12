@@ -94,3 +94,34 @@ void EstagiosCarros() {
   // =========================================
   // Retorna para o loop principal do programa
 }
+
+void EstagiosPed() {
+  // Aqui, não faremos outra tarefa em paralelo com o Arduino,
+  // então podemos utilizar a função delay
+
+  // ======================================================================
+  // Estágio 1: Apaga o vermelho dos pedestres, acende o verde e aguarda 5s
+  Serial.println("Estagio 1: Apaga o vermelho dos pedestres, acende o verde e aguarda 5s");
+  digitalWrite(pedR, LOW);
+  digitalWrite(pedG, HIGH);
+  delay(5000);
+
+  // =====================================================================
+  // Estágio 2: Pisca o verde dos pedestres 5 vezes, em intervalos de 0,5s
+  Serial.println("Estagio 2: Pisca o verde dos pedestres 5 vezes, em intervalos de 0,5s");
+  for (int x=0; x<5; x++) {
+    digitalWrite(pedG, HIGH);
+    delay(500);
+    digitalWrite(pedG, LOW);
+    delay(500);
+  }
+
+  // =======================================================
+  // Estágio 3: Acende o vermelho dos pedestres,
+  //            atualiza a variável travessia para "false" e
+  //            retorna para a função "EstagiosCarros()"
+  Serial.println("Estagio 3: Acende o vermelho dos pedestres, atualiza a variavel");
+  Serial.println("          travessia para false e retorna para a funcao EstagiosCarros() \n");
+  digitalWrite(pedR, HIGH);
+  travessia = false;
+}
